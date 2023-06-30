@@ -13,6 +13,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./chrome-remote-desktop.nix
     ];
 
 
@@ -61,7 +62,20 @@
  services.picom.enable = true;
  services.picom.vSync = true;
  services.picom.backend = "glx";
- services.picom.vsyncMethod = 2;
+
+    # List services that you want to enable:
+   services = {
+     chrome-remote-desktop = {
+       enable = true;
+       user = "adaptiv";
+     };
+   };
+   
+   nixpkgs.overlays = [
+     (self: super: {
+       chrome-remote-desktop = super.callPackage ./default.nix {};
+     })
+   ];
 
 
 # Enable sound.
@@ -96,15 +110,18 @@
 	picom
 	polkit_gnome
 	python3Full
-    colloid-gtk-theme
+    adapta-gtk-theme
     tela-icon-theme
 	unzip
     unclutter-xfixes
     xdg-user-dirs
 	xdg-desktop-portal-gtk
 	xfce.thunar
+    xfce.thunar-volman
+    xfce.thunar-archive-plugin
     xfce.xfce4-terminal
     xfce.xfce4-settings
+    gvfs
     xorg.libX11
     xorg.libX11.dev
     xorg.libxcb
@@ -117,6 +134,8 @@
     blueman
   ];
 
+  # Enable Services
+  services.gvfs.enable = true;
 
   # Disable the firewall altogether.
   networking.firewall.enable = false;
