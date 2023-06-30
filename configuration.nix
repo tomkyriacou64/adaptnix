@@ -25,11 +25,6 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    packages=[ pkgs.terminus_font ];
-    font="${pkgs.terminus_font}/share/consolefonts/ter-i22b.psf.gz";
-    useXkbConfig = true; # use xkbOptions in tty.
-  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -70,9 +65,6 @@
 	chromium
 	feh
     gnome.gedit
-    elementary-xfce-icon-theme
-    fontconfig
-    freetype
 	git
 	nfs-utils
 	openssl
@@ -80,7 +72,6 @@
 	picom
 	polkit_gnome
 	python3Full
-	terminus-nerdfont
 	unzip
     unclutter-xfixes
     xdg-user-dirs
@@ -95,60 +86,16 @@
     xorg.libXinerama
 	xorg.xinit
     xorg.xinput
-    # Enable for bluetooth
-        # bluez
-        # blueman
+    touchegg
+    bluez
+    blueman
   ];
 
 
-  # enable flatpak support
-#   security.polkit.enable = true;
-#  systemd = {
-#   user.services.polkit-gnome-authentication-agent-1 = {
-#     description = "polkit-gnome-authentication-agent-1";
-#     wantedBy = [ "graphical-session.target" ];
-#     wants = [ "graphical-session.target" ];
-#     after = [ "graphical-session.target" ];
-#     serviceConfig = {
-#         Type = "simple";
-#         ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-#         Restart = "on-failure";
-#         RestartSec = 1;
-#         TimeoutStopSec = 10;
-#       };
-#   };
-#    extraConfig = ''
-#      DefaultTimeoutStopSec=10s
-#    '';
-# }; 
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
+  # Disable the firewall altogether.
   networking.firewall.enable = false;
   networking.enableIPv6 = false;
-
-fonts = {
-    fonts = with pkgs; [
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      font-awesome
-      source-han-sans
-      source-han-sans-japanese
-      source-han-serif-japanese
-      (nerdfonts.override { fonts = [ "Meslo" ]; })
-    ];
-    fontconfig = {
-      enable = true;
-      defaultFonts = {
-	      monospace = [ "Meslo LG M Regular Nerd Font Complete Mono" ];
-	      serif = [ "Noto Serif" "Source Han Serif" ];
-	      sansSerif = [ "Noto Sans" "Source Han Sans" ];
-      };
-    };
-};
 
 
   # Copy the NixOS configuration file and link it from the resulting system
