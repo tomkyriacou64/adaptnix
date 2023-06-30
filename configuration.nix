@@ -1,11 +1,13 @@
 { config, pkgs, ... }:
 
+
 {
+
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
-                "openssl-1.1.1u"
-		        "python-2.7.18.6"
-              ];
+        "openssl-1.1.1u"
+		"python-2.7.18.6"
+   ];
 
 
   imports =
@@ -13,24 +15,31 @@
       ./hardware-configuration.nix
     ];
 
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+
   networking.hostName = "adaptiv"; # Define your hostname.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+
 
   # Set your time zone.
   time.timeZone = "Australia/Melbourne";
 
+
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
+
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.windowManager.openbox.enable = true;
   services.xserver.layout = "us";
 
+
+  #Configure LightDM
   services.xserver.displayManager = {
 	lightdm.enable = true;
   	autoLogin = {
@@ -38,21 +47,36 @@
 		user = "adaptiv";
 	};
   };
-  
+
+
+# Disable Sleep
+  services.xserver.displayManager.sessionCommands = ''
+    xset -dpms
+    xset s off
+    xset s noblank
+   '';
+
+
+# Enable and Configure Compositor  
  services.picom.enable = true;
+ services.picom.vSync = true;
+ services.picom.backend = "glx";
+ services.picom.vsyncMethod = 2;
 
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+# Enable sound.
+ sound.enable = true;
+ hardware.pulseaudio.enable = true;
+
+
+# Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.adaptiv = {
      isNormalUser = true;
      extraGroups = [ "wheel" "kvm" "input" "disk" "libvirtd" ]; # Enable ‘sudo’ for the user.
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+
+# List packages installed
    environment.systemPackages = with pkgs; [
 	wget
     openbox
@@ -72,6 +96,8 @@
 	picom
 	polkit_gnome
 	python3Full
+    colloid-gtk-theme
+    tela-icon-theme
 	unzip
     unclutter-xfixes
     xdg-user-dirs
@@ -90,7 +116,6 @@
     bluez
     blueman
   ];
-
 
 
   # Disable the firewall altogether.
