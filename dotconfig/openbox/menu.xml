@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com> -->
+<!DOCTYPE menu [
+  <!ENTITY pipes "/usr/share/archcraft/openbox/pipemenus">
+]>
+<openbox_menu xmlns="http://openbox.org/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openbox.org/  file:///usr/share/openbox/menu.xsd">
+  <menu id="root-menu" title="Menu" label="Openbox 3">
+
+
+		<item label="Web Browser">
+			<action name="Execute">
+				<command>google-chrome</command>
+			</action>
+		</item>
+		
+		<item label="File Manager">
+			<action name="Execute">
+				<command>thunar</command>
+			</action>
+		</item>
+		
+		<item label="Terminal Emulator">
+			<action name="Execute">
+				<command>xfce4-terminal</command>
+			</action>
+		</item>
+
+		<item label="Adaptiv">
+			<action name="Execute">
+				<command>/home/adaptiv/adaptiv/assets/adaptiv-kiosk.AppImage</command>
+			</action>
+		</item>
+		  <separator />
+		  <separator />
+		  <menu id="applications-menu" label="Applications" execute="~/.config/openbox/obamenu"/>
+		  <separator />
+		  <separator />
+		    <item label="Wi-Fi">
+				<action name="Execute">
+						<command>xfce4-terminal --command=nmtui</command>
+				</action>
+			</item>
+			<item label="Advanced Wi-Fi Config">
+				<action name="Execute">
+						<command>nm-connection-editor</command>
+				</action>
+			</item>
+			<menu id="obconfig" label="Openbox">
+				<separator/>
+				<item label="Edit menu.xml">
+					<action name="Execute">
+						<command>gedit ~/.config/openbox/menu.xml</command>
+					</action>
+				</item>
+				<item label="Edit rc.xml">
+					<action name="Execute">
+						<command>gedit ~/.config/openbox/rc.xml</command>
+					</action>
+				</item>
+				<item label="Edit autostart">
+					<action name="Execute">
+						<command>gedit ~/.config/openbox/autostart</command>
+					</action>
+				</item>
+				<separator/>
+				<item label="Reconfigure">
+					<action name="Reconfigure"/>
+				</item>
+				<item label="Restart">
+					<action name="Restart"/>
+				</item>
+			</menu>
+		<separator/>
+
+			<menu id="Exit" label="System">
+				<item label="Logout">
+					<action name="Exit" />
+				</item>
+				<item label="Reboot">
+					<action name="Execute">
+						<command>reboot</command>
+					</action>
+				</item>
+			</menu>
+</openbox_menu>
+<!-- vim:sw=2
+-->

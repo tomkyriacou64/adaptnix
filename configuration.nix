@@ -86,6 +86,8 @@
     xdg-user-dirs
 	xdg-desktop-portal-gtk
 	xfce.thunar
+    xfce.xfce4-terminal
+    xfce.xfce4-settings
     xorg.libX11
     xorg.libX11.dev
     xorg.libxcb
