@@ -48,9 +48,9 @@
 	  };
   };
 
-  environment.variables = {
-    DISPLAY = ":0";
-  };
+  # environment.variables = {
+  #   DISPLAY = ":0";
+  # };
 
 
 # Disable Sleep
