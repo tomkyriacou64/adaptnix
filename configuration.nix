@@ -48,6 +48,10 @@
 	  };
   };
 
+  environment.variables = {
+    DISPLAY = ":0";
+  };
+
 
 # Disable Sleep
   services.xserver.displayManager.sessionCommands = ''
