@@ -5,8 +5,8 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
-        "openssl-1.1.1u"
-		"python-2.7.18.6"
+      "openssl-1.1.1u"
+		  "python-2.7.18.6"
    ];
 
 
@@ -82,18 +82,16 @@
     openbox-menu
     lightdm
     lightdm-gtk-greeter
+    tailscale
     neofetch
     htop
-	  neovim
-	  chromium
 	  feh
-    gnome.gedit
 	  git
     nfs-utils
+    openssh
     openssl
     pavucontrol
     picom
-    polkit_gnome
     python3Full
     adapta-gtk-theme
     tela-icon-theme

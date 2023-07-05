@@ -1,0 +1,13 @@
+#!/bin/bash
+
+xfsettingsd  &
+sleep 2 && xfce4-power-manager &
+sleep 2 && picom --config ~/.config/picom.conf &
+sleep 2 && feh --bg-center ~/adaptiv/assets/adaptiv-wallpaper.jpg &
+sleep 2 && lxpolkit &
+# Use if on touchscreen
+# sleep 1 && unclutter --timeout 0.1 --hide-on-touch --start-hidden & 
+# sleep 2 && touchegg &
+sleep 1 && unclutter --timeout 1 &
+sleep 10 && cd adaptiv/assets 
+./adaptiv-kiosk.AppImage &
