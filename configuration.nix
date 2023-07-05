@@ -13,7 +13,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./chrome-remote-desktop.nix
     ];
 
 
@@ -63,20 +62,6 @@
  services.picom.vSync = true;
  services.picom.backend = "glx";
 
-    # List services that you want to enable:
-   services = {
-     chrome-remote-desktop = {
-       enable = true;
-       user = "adaptiv";
-     };
-   };
-   
-   nixpkgs.overlays = [
-     (self: super: {
-       chrome-remote-desktop = super.callPackage ./default.nix {};
-     })
-   ];
-
 
 # Enable sound.
  sound.enable = true;
@@ -91,32 +76,32 @@
 
 
 # List packages installed
-   environment.systemPackages = with pkgs; [
-	wget
+  environment.systemPackages = with pkgs; [
+	  wget
     openbox
     openbox-menu
     lightdm
     lightdm-gtk-greeter
     neofetch
     htop
-	neovim
-	chromium
-	feh
+	  neovim
+	  chromium
+	  feh
     gnome.gedit
-	git
-	nfs-utils
-	openssl
-	pavucontrol
-	picom
-	polkit_gnome
-	python3Full
+	  git
+    nfs-utils
+    openssl
+    pavucontrol
+    picom
+    polkit_gnome
+    python3Full
     adapta-gtk-theme
     tela-icon-theme
-	unzip
+	  unzip
     unclutter-xfixes
     xdg-user-dirs
-	xdg-desktop-portal-gtk
-	xfce.thunar
+	  xdg-desktop-portal-gtk
+	  xfce.thunar
     xfce.thunar-volman
     xfce.thunar-archive-plugin
     xfce.xfce4-terminal
@@ -127,7 +112,7 @@
     xorg.libxcb
     xorg.libXft
     xorg.libXinerama
-	xorg.xinit
+	  xorg.xinit
     xorg.xinput
     touchegg
     bluez
