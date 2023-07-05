@@ -113,6 +113,7 @@
     xorg.libXinerama
 	  xorg.xinit
     xorg.xinput
+    appimage-run
     touchegg
     bluez
     blueman
@@ -120,6 +121,9 @@
 
   # Enable Services
   services.gvfs.enable = true;
+  services.xrdp.enable = true;
+  services.sshd.enable = true;
+  services.xrdp.defaultWindowManager = "openbox";
 
 
   # Setup and Configure Tailscale
