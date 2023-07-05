@@ -22,7 +22,7 @@
 
 
   networking.hostName = "adaptiv"; # Define your hostname.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; 
 
 
   # Set your time zone.
@@ -43,9 +43,9 @@
   services.xserver.displayManager = {
 	lightdm.enable = true;
   	autoLogin = {
-		enable = true;
-		user = "adaptiv";
-	};
+      enable = true;
+      user = "adaptiv";
+	  };
   };
 
 
@@ -119,17 +119,16 @@
 
   # Enable Services
   services.gvfs.enable = true;
-  
-  
+
 
   # Setup and Configure Tailscale
 
-  # Enable the Tailscale service
-  services.tailscale.enable = true;
+    # Enable the Tailscale service
+    services.tailscale.enable = true;
 
-  # create a oneshot job to authenticate to Tailscale
-  systemd.services.tailscale-autoconnect = {
-    description = "Automatic connection to Tailscale";
+    # create a oneshot job to authenticate to Tailscale
+    systemd.services.tailscale-autoconnect = {
+      description = "Automatic connection to Tailscale";
 
     # make sure tailscale is running before trying to connect to tailscale
     after = [ "network-pre.target" "tailscale.service" ];
