@@ -119,14 +119,12 @@
     xorg.xinput
     appimage-run
     touchegg
-    bluez
-    blueman
   ];
 
   # Enable Services
   services.gvfs.enable = true;
-  services.xrdp.enable = true;
   services.sshd.enable = true;
+  services.xrdp.enable = true;
   services.xrdp.defaultWindowManager = "openbox";
 
 
@@ -199,6 +197,19 @@
       DefaultTimeoutStopSec=10s
     '';
   }; 
+
+
+
+# Enable cron service
+services.cron = {
+  enable = true;
+  systemCronJobs = [
+    "0 2 1,16 * * if ping -c 1 google.com > /dev/null 2>&1; then \
+      reboot \
+    fi"
+  ];
+};
+
 
 
 
